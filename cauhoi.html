@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Câu hỏi tình yêu</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        background: url("https://www.transparenttextures.com/patterns/hearts.png"),
+          linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        position: relative;
+        display: inline-block;
+      }
+      .button {
+        font-size: 20px;
+        padding: 10px 20px;
+        margin: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+      }
+      .yes {
+        background-color: #4caf50;
+        color: white;
+      }
+      .no {
+        background-color: #f44336;
+        color: white;
+        position: absolute;
+      }
+      @keyframes shake {
+        0% {
+          transform: translate(1px, 1px) rotate(0deg);
+        }
+        10% {
+          transform: translate(-1px, -2px) rotate(-1deg);
+        }
+        20% {
+          transform: translate(-3px, 0px) rotate(1deg);
+        }
+        30% {
+          transform: translate(3px, 2px) rotate(0deg);
+        }
+        40% {
+          transform: translate(1px, -1px) rotate(1deg);
+        }
+        50% {
+          transform: translate(-1px, 2px) rotate(-1deg);
+        }
+        60% {
+          transform: translate(-3px, 1px) rotate(0deg);
+        }
+        70% {
+          transform: translate(3px, 1px) rotate(-1deg);
+        }
+        80% {
+          transform: translate(-1px, -1px) rotate(1deg);
+        }
+        90% {
+          transform: translate(1px, 2px) rotate(0deg);
+        }
+        100% {
+          transform: translate(1px, -2px) rotate(-1deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bạn có yêu mình không? ❤️</h1>
+    <div class="container">
+      <button class="button yes" onclick="showLove()">Có</button>
+      <button
+        class="button no"
+        onmouseover="moveButton()"
+        onclick="shrinkButton()"
+      >
+        Không
+      </button>
+    </div>
+
+    <script>
+      function moveButton() {
+        let button = document.querySelector(".no");
+        let x = Math.random() * (window.innerWidth - 100);
+        let y = Math.random() * (window.innerHeight - 50);
+        button.style.left = x + "px";
+        button.style.top = y + "px";
+      }
+
+      function shrinkButton() {
+        let button = document.querySelector(".no");
+        let currentSize = parseFloat(window.getComputedStyle(button).fontSize);
+        if (currentSize > 5) {
+          button.style.fontSize = currentSize * 0.8 + "px";
+          button.style.padding =
+            parseFloat(button.style.padding || 10) * 0.8 + "px";
+        }
+        document.body.style.animation = "shake 0.5s";
+        setTimeout(() => {
+          document.body.style.animation = "none";
+        }, 500);
+        moveButton();
+      }
+
+      function showLove() {
+        alert(
+          "Mình biết mà mình cũng thích bạn gửi lại mình id:520 nếu đồng ý! ❤️"
+        );
+        let hearts = document.createElement("div");
+        hearts.innerHTML = "❤️❤️❤️";
+        hearts.style.position = "absolute";
+        hearts.style.top = "50%";
+        hearts.style.left = "50%";
+        hearts.style.transform = "translate(-50%, -50%)";
+        hearts.style.fontSize = "50px";
+        document.body.appendChild(hearts);
+        setTimeout(() => {
+          hearts.remove();
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>
